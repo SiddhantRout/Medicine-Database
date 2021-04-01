@@ -1,6 +1,7 @@
 import React from 'react';
-import { Header, LeftPannel } from '../components';
 import { makeStyles } from '@material-ui/core';
+import { Header, LeftPannel } from '../components';
+import { People, Medicines } from '../views';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -13,7 +14,10 @@ const HomePage = () => {
     return (
         <div>
             <Header value={headerValue} setValue={setHeaderValue} />
-            <LeftPannel/>
+            <div style={{ display: 'flex' }}>
+                {/* <LeftPannel/> */}
+                {headerValue === 0 ? <People/> : <Medicines/>}
+            </div>
         </div>
     )
 }

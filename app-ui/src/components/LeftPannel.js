@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid green',
         width: '15%',
         // position: 'absolute'
-        height: '93vh',
+        height: '90vh',
     }
 }))
 

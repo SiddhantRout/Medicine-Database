@@ -29,7 +29,7 @@ const Header = ({ value, setValue }) => {
     return (
         <Paper className={classes.Header}>
             <div className={classes.AppName}>
-                Medicine Management App
+                Nigoni (Chuha, which means rat)
             </div>
             <Tabs
                 value={value}
