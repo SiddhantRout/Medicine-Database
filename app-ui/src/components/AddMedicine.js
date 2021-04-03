@@ -28,6 +28,14 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: '1rem',
         width: '90%'
     },
+    ErrorInputs: {
+        border: '1px solid red',
+        borderRadius: 10,
+        // padding: '1.2rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+        width: '90%'
+    },
     AddDialog: {
         position: 'absolute',
         top: '22%',
@@ -61,31 +69,40 @@ const AddMedicineDialogBox = ({ setOpen, setFetchData }) => {
     const [ unit, setUnit ] = React.useState('');
     const [ expiry, setExpiry ] = React.useState('');
     const [ purpose, setPurpose ] = React.useState('');
+    const [ addButtonClicked, setAddButtonClicked ] = React.useState(false);
 
     const handleClose = () => {
         setOpen(false);
     }
 
     const handleAddButton = () => {
-        axios.post(
-            `http://localhost:8080/Minor_Project/AddMedicine`,
-            {
-                name,
-                concentration,
-                quantity,
-                unit,
-                expiry,
-                purpose,
-            }
-        )
-        .then(response => {
-            console.log(response)
-            setFetchData(true)
-            setOpen(false)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        setAddButtonClicked(true)
+        if(
+            name !== '' &&
+            quantity !== '' &&
+            unit !== '' &&
+            expiry !== ''
+        ) {
+            axios.post(
+                `http://localhost:8080/Minor_Project/AddMedicine`,
+                {
+                    name,
+                    concentration,
+                    quantity,
+                    unit,
+                    expiry,
+                    purpose,
+                }
+            )
+            .then(response => {
+                console.log(response)
+                setFetchData(true)
+                setOpen(false)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
         // console.log(name, concentration, quantity, unit, expiry, purpose);
     }
 
@@ -100,27 +117,38 @@ const AddMedicineDialogBox = ({ setOpen, setFetchData }) => {
 
     const handleName = (event) => {
         setName(event.target.value)
+        setAddButtonClicked(false)
     }
 
     const handleConcentration = (event) => {
         setConcentration(event.target.value)
+        setAddButtonClicked(false)
     }
 
     const handleQuantity = (event) => {
         setQuantity(event.target.value)
+        setAddButtonClicked(false)
     }
     
     const handleUnit = (event) => {
         setUnit(event.target.value)
+        setAddButtonClicked(false)
     }
 
     const handleExpiry = (date) => {
-        setExpiry(date)   
+        setExpiry(date)
+        setAddButtonClicked(false)
     }
 
     const handlePurpose = (event) => {
         setPurpose(event.target.value)
+        setAddButtonClicked(false)
     }
+
+    const isErrorName = name === '' && addButtonClicked;
+    const isErrorQuantity = quantity === '' && addButtonClicked;
+    const isErrorUnit = unit === '' && addButtonClicked;
+    const isErrorExpiry = expiry === '' && addButtonClicked;
 
     return (
         <Paper className={classes.AddDialog}>
@@ -146,7 +174,7 @@ const AddMedicineDialogBox = ({ setOpen, setFetchData }) => {
                     <div style={{paddingTop: '1.5rem'}}>
                         <Input 
                             disableUnderline={true}
-                            className={classes.AddInputs}
+                            className={isErrorName ? classes.ErrorInputs : classes.AddInputs}
                             value={name}
                             onChange={(event) => handleName(event)}
                         />
@@ -163,7 +191,7 @@ const AddMedicineDialogBox = ({ setOpen, setFetchData }) => {
                         <div style={{ width: '52%' }}>
                             <Input 
                                 disableUnderline={true}
-                                className={classes.AddInputs}
+                                className={isErrorQuantity ? classes.ErrorInputs : classes.AddInputs}
                                 style={{ paddingRight: '0.1rem' }}
                                 value={quantity}
                                 onChange={(event) => handleQuantity(event)}
@@ -171,11 +199,11 @@ const AddMedicineDialogBox = ({ setOpen, setFetchData }) => {
                         </div>
                         <div >
                             <Select 
-                                className={classes.AddInputs} 
+                                className={isErrorUnit ? classes.ErrorInputs : classes.AddInputs} 
                                 disableUnderline={true}
                                 onChange={handleUnit}
                                 value={unit}
-                                style={{ width: '150%', border: '1px solid black' }}
+                                style={{ width: '150%' }}
                             >
                                 <MenuItem value="tablet(s)">
                                     <div>tablet(s)</div>
@@ -189,7 +217,7 @@ const AddMedicineDialogBox = ({ setOpen, setFetchData }) => {
                     <div style={{paddingTop: '1.5rem', width: '86%'}}>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker
-                                className={classes.AddInputs}
+                                className={isErrorExpiry ? classes.ErrorInputs : classes.AddInputs}
                                 disableToolbar
                                 variant="inline"
                                 onChange={handleExpiry}
