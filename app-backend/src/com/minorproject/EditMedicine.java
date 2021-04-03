@@ -67,10 +67,10 @@ public class EditMedicine extends HttpServlet {
 			
 			PreparedStatement st = conn.prepareStatement(sql_statement);
 			st.setString(3, name);
-			System.out.println(st);
+//			System.out.println(st);
 //			st.setString(1,  concentration.isEmpty() ? null : concentration);
 			st.setInt(1, quantity);
-			System.out.println(st);
+//			System.out.println(st);
 //			st.setString(3,  unit);
 //			st.setString(4,  expiry);
 			st.setString(2, purpose.isEmpty() ? null : purpose);
