@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const DeletePersonDialogBox = ({ setOpen, setFetchData, selected, setSelected }) => {
+const DeleteMedicineDialogBox = ({ setOpen, setFetchData, selected, setSelected }) => {
     const classes = useStyles();
 
     const handleClose = () => {
@@ -42,7 +42,7 @@ const DeletePersonDialogBox = ({ setOpen, setFetchData, selected, setSelected })
 
     const handleDeleteButton = () => {
         axios.post(
-            `http://localhost:8080/Minor_Project/DeletePerson`, { selected }
+            `http://localhost:8080/Minor_Project/DeleteMedicine`, { selected }
         )
         .then(response => {
             console.log(response)
@@ -53,13 +53,14 @@ const DeletePersonDialogBox = ({ setOpen, setFetchData, selected, setSelected })
         .catch(error => {
             console.log(error)
         })
+        // console.log(selected);
     }
 
     return (
         <Paper className={classes.DeleteDialog}>
             <div style={{ padding: '0.5rem' }}>
                 <div className={classes.DialogTitle}>
-                    Delete Person
+                    Delete Medicine
                 </div>
                 <div className={classes.TopRightMenu}>
                     <IconButton onClick={handleClose}>
@@ -68,7 +69,7 @@ const DeletePersonDialogBox = ({ setOpen, setFetchData, selected, setSelected })
                 </div>
             </div>
             <div className={classes.DialogContent}>
-                <p>The details of the person once deleted will not be retrieved.</p>
+                <p>The details of the medicine once deleted will not be retrieved.</p>
                 <p>Are you sure you want to remove this record?</p>
             </div>
             <div className={classes.ButtonBar} style={{ display: 'flex' }}>
@@ -80,4 +81,4 @@ const DeletePersonDialogBox = ({ setOpen, setFetchData, selected, setSelected })
     )
 }
 
-export default DeletePersonDialogBox;
+export default DeleteMedicineDialogBox;

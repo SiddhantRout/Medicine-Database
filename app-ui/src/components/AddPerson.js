@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const AddDialogBox = ({ setOpen, setFetchData }) => {
+const AddPersonDialogBox = ({ setOpen, setFetchData }) => {
     const classes = useStyles();
     const [ name, setName ] = React.useState('');
     const [ age, setAge ] = React.useState('');
@@ -155,4 +155,4 @@ const AddDialogBox = ({ setOpen, setFetchData }) => {
     )
 }
 
-export default AddDialogBox;
+export default AddPersonDialogBox;

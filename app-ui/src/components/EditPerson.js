@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const EditDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
+const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
     const classes = useStyles();
     const [ personID, setPersonID ] = React.useState(selectedDetails[0]['person_id'])
     const [ name, setName ] = React.useState(selectedDetails[0]['name']);
@@ -155,4 +155,4 @@ const EditDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
     )
 }
 
-export default EditDialogBox;
+export default EditPersonDialogBox;

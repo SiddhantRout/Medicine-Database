@@ -58,9 +58,11 @@ public class SendDataFromMedicine extends HttpServlet {
 			while(rs.next()) {
 				Medicine m = new Medicine();
 				m.setName(rs.getString("name"));
-				m.setConcentration(rs.getInt("concentration"));
+				m.setConcentration(rs.getString("concentration"));
+				m.setQuantity(rs.getInt("quantity"));
 				m.setUnit(rs.getString("unit"));
 				m.setExpiry(rs.getString("expiry"));
+				m.setPurpose(rs.getString("purpose"));
 				
 				data.add(m);
 			}

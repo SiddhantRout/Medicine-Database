@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DeletePerson
+ * Servlet implementation class DeleteMedicine
  */
-@WebServlet("/DeletePerson")
-public class DeletePerson extends HttpServlet {
+@WebServlet("/DeleteMedicine")
+public class DeleteMedicine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeletePerson() {
+    public DeleteMedicine() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,23 +39,24 @@ public class DeletePerson extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String person = null;
+		String medicine = null;
 		
 		try {
 			BufferedReader reader = request.getReader();
-			person = reader.readLine();
-			System.out.println(person);
+			medicine = reader.readLine();
+			System.out.println(medicine);
 			
-			person = person.substring(1, person.length() - 1);
-			person = person.split(":")[1];
-			person = person.substring(1, person.length() - 1);
+			medicine = medicine.substring(1, medicine.length() - 1);
+			medicine = medicine.split(":")[1];
+			medicine = medicine.substring(1, medicine.length() - 1);
 			
-			String final_values[] = person.split(",");
+			String final_values[] = medicine.split(",");
 			
 			Connection conn = GetConnection.connectToDB();
-			String sql_statement = "DELETE FROM person where person_id=?";
+			String sql_statement = "DELETE FROM medicine where name=?";
 			
 			for(int i = 0; i < final_values.length; ++i) {
+				final_values[i] = final_values[i].substring(1, final_values[i].length() - 1);
 				System.out.println(final_values[i]);
 				PreparedStatement st = conn.prepareStatement(sql_statement);
 				st.setString(1,  final_values[i]);

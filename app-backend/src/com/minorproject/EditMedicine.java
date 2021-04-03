@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DeletePerson
+ * Servlet implementation class EditMedicine
  */
-@WebServlet("/DeletePerson")
-public class DeletePerson extends HttpServlet {
+@WebServlet("/EditMedicine")
+public class EditMedicine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeletePerson() {
+    public EditMedicine() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,31 +39,44 @@ public class DeletePerson extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String person = null;
+		String medicine = null;
 		
 		try {
 			BufferedReader reader = request.getReader();
-			person = reader.readLine();
-			System.out.println(person);
+			medicine = reader.readLine();
+			System.out.println(medicine);
 			
-			person = person.substring(1, person.length() - 1);
-			person = person.split(":")[1];
-			person = person.substring(1, person.length() - 1);
-			
-			String final_values[] = person.split(",");
-			
-			Connection conn = GetConnection.connectToDB();
-			String sql_statement = "DELETE FROM person where person_id=?";
+			medicine = medicine.substring(1, medicine.length() - 1);
+			String final_values[] = medicine.split(",");
 			
 			for(int i = 0; i < final_values.length; ++i) {
+				final_values[i] = final_values[i].split(":")[1];
+				final_values[i] = final_values[i].substring(1, final_values[i].length() - 1);
 				System.out.println(final_values[i]);
-				PreparedStatement st = conn.prepareStatement(sql_statement);
-				st.setString(1,  final_values[i]);
-				st.executeUpdate();
 			}
 			
-			conn.close();
+			String name = final_values[0];
+			String concentration = final_values[1];
+			int quantity = Integer.parseInt(final_values[2]);
+			String unit = final_values[3];
+			String expiry = final_values[4].substring(0, final_values[4].length() - 2);
+			String purpose = final_values[5];
+		
+			Connection conn = GetConnection.connectToDB();
+			String sql_statement = "UPDATE medicine SET concentration=?, quantity=?, unit=?, expiry=?, purpose=? WHERE name=?";
 			
+			PreparedStatement st = conn.prepareStatement(sql_statement);
+			st.setString(6, name);
+			st.setString(1,  concentration.isEmpty() ? null : concentration);
+			st.setInt(2,  quantity);
+			st.setString(3,  unit);
+			st.setString(4,  expiry);
+			st.setString(5,  purpose.isEmpty() ? null : purpose);
+			
+			System.out.println(st);
+			
+			st.executeUpdate();
+			conn.close();
 		}
 		catch (IOException e) {
 			e.printStackTrace();

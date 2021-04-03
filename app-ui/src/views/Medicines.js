@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core';
-import { PersonTable, AddDialogBox, EditDialogBox, DeleteDialogBox } from '../components';
+import { MedicineTable, AddMedicineDialogBox, EditMedicineDialogBox, DeleteMedicineDialogBox } from '../components';
 import { Button, Input } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -102,7 +102,7 @@ const Bar = ({
 const People = () => {
     const classes = useStyles();
 
-    const [ personData, setPersonData ] = React.useState([]);
+    const [ medicineData, setMedicineData ] = React.useState([]);
     const [ fetchData, setFetchData ] = React.useState(false);
 
     const [ isOpenAddMenu, setIsOpenAddMenu ] = React.useState(false);
@@ -115,7 +115,7 @@ const People = () => {
     React.useEffect(() => {
         axios.get(`http://localhost:8080/Minor_Project/SendDataFromMedicine`)
         .then((response) => {
-            setPersonData((prev) => [...response.data]);
+            setMedicineData((prev) => [...response.data]);
             if(fetchData) {
                 setFetchData(false);
             }
@@ -127,8 +127,8 @@ const People = () => {
     }, [ fetchData ])
 
     React.useEffect(() => {
-        setSelectedDetails(personData.filter(row => selected.indexOf(row['person_id']) !== -1))
-        console.log(selectedDetails)
+        setSelectedDetails(medicineData.filter(row => selected.indexOf(row['name']) !== -1))
+        // console.log(selectedDetails)
     }, [ selected ])
 
     return (
@@ -144,23 +144,23 @@ const People = () => {
             <div>
                 {
                     ((isOpenAddMenu || isOpenEditMenu || isOpenDeleteMenu) === false) ?
-                        <PersonTable 
-                            personData={personData} 
+                        <MedicineTable 
+                            medicineData={medicineData} 
                             selected={selected} 
                             setSelected={setSelected}
                         /> :
                         isOpenAddMenu ?
-                            <AddDialogBox 
+                            <AddMedicineDialogBox 
                                 setOpen={setIsOpenAddMenu} 
                                 setFetchData={setFetchData}
                             /> :
                             isOpenEditMenu ? 
-                                <EditDialogBox
+                                <EditMedicineDialogBox
                                     setOpen={setIsOpenEditMenu} 
                                     setFetchData={setFetchData}
                                     selectedDetails={selectedDetails}
                                 /> : 
-                                <DeleteDialogBox
+                                <DeleteMedicineDialogBox
                                     setOpen={setIsOpenDeleteMenu} 
                                     setFetchData={setFetchData}
                                     selected={selected}

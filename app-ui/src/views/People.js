@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core';
-import { PersonTable, AddDialogBox, EditDialogBox, DeleteDialogBox } from '../components';
+import { PersonTable, AddPersonDialogBox, EditPersonDialogBox, DeletePersonDialogBox } from '../components';
 import { Button, Input } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -150,17 +150,17 @@ const People = () => {
                             setSelected={setSelected}
                         /> :
                         isOpenAddMenu ?
-                            <AddDialogBox 
+                            <AddPersonDialogBox 
                                 setOpen={setIsOpenAddMenu} 
                                 setFetchData={setFetchData}
                             /> :
                             isOpenEditMenu ? 
-                                <EditDialogBox
+                                <EditPersonDialogBox
                                     setOpen={setIsOpenEditMenu} 
                                     setFetchData={setFetchData}
                                     selectedDetails={selectedDetails}
                                 /> : 
-                                <DeleteDialogBox
+                                <DeletePersonDialogBox
                                     setOpen={setIsOpenDeleteMenu} 
                                     setFetchData={setFetchData}
                                     selected={selected}
