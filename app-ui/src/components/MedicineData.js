@@ -95,10 +95,10 @@ const MedicineTable = ({
                                     />
                                 </TableCell>
                                 <TableCell width='20%' align='center'>{row['name']}</TableCell>
-                                <TableCell width='5%' align='center'>{row['concentration'] === null ? "--" : row['concentration']}</TableCell>
+                                <TableCell width='5%' align='center'>{row['concentration'] === null || row['concentration'] === '' ? "--" : row['concentration']}</TableCell>
                                 <TableCell width='180px' align='center'>{row['quantity']} {row['unit']}</TableCell>
                                 <TableCell width='20%' align='center'>{row['expiry']}</TableCell>
-                                <TableCell align='center'>{row['purpose'] === null ? "--" : row['purpose']}</TableCell> 
+                                <TableCell align='center'>{row['purpose'] === null || row['purpose'] === '' ? "--" : row['purpose']}</TableCell> 
                             </TableRow>
                         )
                     })}
