@@ -75,9 +75,9 @@ const PersonTable = ({
                             />
                         </TableCell>
                         {/* <TableCell width='10%' align='center'>Person ID</TableCell> */}
-                        <TableCell width='20%' align='center'>Name</TableCell>
-                        <TableCell width='5%' align='center'>Age</TableCell>
-                        <TableCell align='center'>Medical History</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='20%' align='center'>Name</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='5%' align='center'>Age</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} align='center'>Medical History</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
