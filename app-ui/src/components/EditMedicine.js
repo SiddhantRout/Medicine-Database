@@ -211,7 +211,7 @@ const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
                         <Input 
                             disableUnderline={true}
                             className={classes.AddInputs}
-                            // value={purpose}
+                            value={purpose}
                             placeholder={selectedDetails[0]['purpose']}
                             onChange={(event) => handlePurpose(event)}
                         />
