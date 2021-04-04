@@ -75,11 +75,11 @@ const MedicineTable = ({
                                 size='small'
                             />
                         </TableCell>
-                        <TableCell width='20%' align='center'>Name</TableCell>
-                        <TableCell width='5%' align='center'>Concentration</TableCell>
-                        <TableCell width='20%' align='center'>Quantity</TableCell>
-                        <TableCell width='20%' align='center'>Expiry</TableCell>
-                        <TableCell align='center'>Purpose</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='20%' align='center'>Name</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='5%' align='center'>Concentration</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='20%' align='center'>Quantity</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='20%' align='center'>Expiry</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} align='center'>Purpose</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
