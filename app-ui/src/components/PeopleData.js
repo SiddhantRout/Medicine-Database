@@ -95,7 +95,7 @@ const PersonTable = ({
                                 {/* <TableCell width='100px' align='center'>{row['person_id']}</TableCell> */}
                                 <TableCell width='180px' align='center'>{row['name']}</TableCell>
                                 <TableCell width='100px' align='center'>{row['age']}</TableCell>
-                                <TableCell align='center'>{row['notes']}</TableCell>
+                                <TableCell align='center'>{row['notes'] === '' || row['notes'] === null ? "--" : row['notes']}</TableCell>
                             </TableRow>
                         )
                     })}
