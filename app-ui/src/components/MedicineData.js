@@ -75,11 +75,11 @@ const MedicineTable = ({
                                 size='small'
                             />
                         </TableCell>
-                        <TableCell width='20%' align='center'>Name</TableCell>
-                        <TableCell width='5%' align='center'>Concentration</TableCell>
-                        <TableCell width='20%' align='center'>Quantity</TableCell>
-                        <TableCell width='20%' align='center'>Expiry</TableCell>
-                        <TableCell align='center'>Purpose</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='20%' align='center'>Name</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='5%' align='center'>Concentration</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='20%' align='center'>Quantity</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} width='20%' align='center'>Expiry</TableCell>
+                        <TableCell style={{ fontWeight: 700 }} align='center'>Purpose</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -95,10 +95,10 @@ const MedicineTable = ({
                                     />
                                 </TableCell>
                                 <TableCell width='20%' align='center'>{row['name']}</TableCell>
-                                <TableCell width='5%' align='center'>{row['concentration'] === null ? "--" : row['concentration']}</TableCell>
+                                <TableCell width='5%' align='center'>{row['concentration'] === null || row['concentration'] === '' ? "--" : row['concentration']}</TableCell>
                                 <TableCell width='180px' align='center'>{row['quantity']} {row['unit']}</TableCell>
                                 <TableCell width='20%' align='center'>{row['expiry']}</TableCell>
-                                <TableCell align='center'>{row['purpose'] === null ? "--" : row['purpose']}</TableCell> 
+                                <TableCell align='center'>{row['purpose'] === null || row['purpose'] === '' ? "--" : row['purpose']}</TableCell> 
                             </TableRow>
                         )
                     })}

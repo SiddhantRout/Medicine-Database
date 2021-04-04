@@ -49,12 +49,12 @@ const useStyles = makeStyles((theme) => ({
 
 const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
     const classes = useStyles();
-    const [ name, setName ] = React.useState('');
-    const [ concentration, setConcentration ] = React.useState('');
-    const [ quantity, setQuantity ] = React.useState('');
-    const [ unit, setUnit ] = React.useState('');
-    const [ expiry, setExpiry ] = React.useState('');
-    const [ purpose, setPurpose ] = React.useState('');
+    const [ name, setName ] = React.useState(selectedDetails[0]['name']);
+    const [ concentration, setConcentration ] = React.useState(selectedDetails[0]['concentration']);
+    const [ quantity, setQuantity ] = React.useState(selectedDetails[0]['quantity']);
+    const [ unit, setUnit ] = React.useState(selectedDetails[0]['unit']);
+    const [ expiry, setExpiry ] = React.useState(selectedDetails[0]['expiry']);
+    const [ purpose, setPurpose ] = React.useState(selectedDetails[0]['purpose']);
 
     const handleClose = () => {
         setOpen(false);
@@ -65,10 +65,10 @@ const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
             `http://localhost:8080/Minor_Project/EditMedicine`,
             {
                 name, 
-                concentration,
+                // concentration,
                 quantity,
-                unit,
-                expiry,
+                // unit,
+                // expiry,
                 purpose
             }
         )
@@ -80,16 +80,16 @@ const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
         .catch(error => {
             console.log(error)
         })
-        console.log(name, concentration, quantity, unit, expiry, purpose);
+        // console.log(name, concentration, quantity, unit, expiry, purpose);
     }
 
     const handleClearButton = () => {
-        setName('');
-        setConcentration('');
-        setQuantity('');
-        setUnit('');
-        setExpiry('');
-        setPurpose('');
+        setName(selectedDetails[0]['name']);
+        setConcentration(selectedDetails[0]['concentration']);
+        setQuantity(selectedDetails[0]['quantity']);
+        setUnit(selectedDetails[0]['unit']);
+        setExpiry(selectedDetails[0]['expiry']);
+        setPurpose(selectedDetails[0]['purpose']);
     }
 
     const handleName = (event) => {
@@ -137,23 +137,25 @@ const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
                     <div className={classes.AddLabels}>Purpose</div>
                 </div>
                 <div>
-                    <div style={{paddingTop: '1.5rem'}}>
-                        <Input 
+                    <div style={{paddingTop: '2rem'}}>
+                        {/* <Input 
                             disableUnderline={true}
                             className={classes.AddInputs}
                             placeholder={selectedDetails[0]['name']}
                             // value={name}
                             onChange={(event) => handleName(event)}
-                        />
+                        /> */}
+                        {name}
                     </div>
-                    <div style={{paddingTop: '1.5rem'}}>
-                        <Input 
+                    <div style={{paddingTop: '2rem'}}>
+                        {/* <Input 
                             disableUnderline={true}
                             className={classes.AddInputs}
                             placeholder={selectedDetails[0]['concentration']}
                             // value={concentration}
                             onChange={(event) => handleConcentration(event)}
-                        />
+                        /> */}
+                        {concentration === null ? "--" : concentration}
                     </div>
                     <div style={{paddingTop: '1.5rem', display: 'flex'}}>
                         <div style={{ width: '52%' }}>
@@ -166,8 +168,8 @@ const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
                                 onChange={(event) => handleQuantity(event)}
                             />
                         </div>
-                        <div >
-                            <Select 
+                        <div style={{ paddingTop: '0.2rem' }}>
+                            {/* <Select 
                                 className={classes.AddInputs} 
                                 disableUnderline={true}
                                 onChange={handleUnit}
@@ -181,11 +183,12 @@ const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
                                 <MenuItem value="ml">
                                     <div>ml</div>
                                 </MenuItem>
-                            </Select>
+                            </Select> */}
+                            {unit}
                         </div>
                     </div>
-                    <div style={{paddingTop: '1.5rem', width: '86%'}}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <div style={{paddingTop: '1.8rem', width: '86%'}}>
+                        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker
                                 className={classes.AddInputs}
                                 disableToolbar
@@ -201,13 +204,14 @@ const EditMedicineDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
                                     color: 'primary',
                                 }}
                             />
-                        </MuiPickersUtilsProvider>
+                        </MuiPickersUtilsProvider> */}
+                        {expiry}
                     </div>
                     <div style={{paddingTop: '1.5rem'}}>
                         <Input 
                             disableUnderline={true}
                             className={classes.AddInputs}
-                            // value={purpose}
+                            value={purpose}
                             placeholder={selectedDetails[0]['purpose']}
                             onChange={(event) => handlePurpose(event)}
                         />

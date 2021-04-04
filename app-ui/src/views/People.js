@@ -158,6 +158,7 @@ const People = () => {
                                 <EditPersonDialogBox
                                     setOpen={setIsOpenEditMenu} 
                                     setFetchData={setFetchData}
+                                    setSelected={setSelected}
                                     selectedDetails={selectedDetails}
                                 /> : 
                                 <DeletePersonDialogBox

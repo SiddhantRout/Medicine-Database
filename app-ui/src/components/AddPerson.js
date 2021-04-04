@@ -24,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: '1rem',
         width: '90%'
     },
+    ErrorInputs: {
+        border: '1px solid red',
+        borderRadius: 10,
+        // padding: '1.2rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+        width: '90%'
+    },
     AddDialog: {
         position: 'absolute',
         top: '22%',
@@ -54,28 +62,35 @@ const AddPersonDialogBox = ({ setOpen, setFetchData }) => {
     const [ name, setName ] = React.useState('');
     const [ age, setAge ] = React.useState('');
     const [ medicalHistory, setMedicalHistory ] = React.useState('');
+    const [ addButtonClicked, setAddButtonClicked ] = React.useState(false);
 
     const handleClose = () => {
         setOpen(false);
     }
 
     const handleAddButton = () => {
-        axios.post(
-            `http://localhost:8080/Minor_Project/AddPerson`,
-            {
-                name,
-                age,
-                medicalHistory,
-            }
-        )
-        .then(response => {
-            console.log(response)
-            setFetchData(true)
-            setOpen(false)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        setAddButtonClicked(true)
+        if(
+            name !== '' &&
+            age !== ''
+        ) {
+            axios.post(
+                `http://localhost:8080/Minor_Project/AddPerson`,
+                {
+                    name,
+                    age,
+                    medicalHistory,
+                }
+            )
+            .then(response => {
+                console.log(response)
+                setFetchData(true)
+                setOpen(false)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
     }
 
     const handleClearButton = () => {
@@ -86,15 +101,21 @@ const AddPersonDialogBox = ({ setOpen, setFetchData }) => {
 
     const handleName = (event) => {
         setName(event.target.value)
+        setAddButtonClicked(false)
     }
 
     const handleAge = (event) => {
         setAge(event.target.value)
+        setAddButtonClicked(false)
     }
 
     const handleMedicalHistory = (event) => {
         setMedicalHistory(event.target.value)
+        setAddButtonClicked(false)
     }
+
+    const isErrorName = name === '' && addButtonClicked;
+    const isErrorAge = age === '' && addButtonClicked;
 
     return (
         <Paper className={classes.AddDialog}>
@@ -118,7 +139,7 @@ const AddPersonDialogBox = ({ setOpen, setFetchData }) => {
                     <div style={{paddingTop: '1.5rem'}}>
                         <Input 
                             disableUnderline={true}
-                            className={classes.AddInputs}
+                            className={isErrorName ? classes.ErrorInputs : classes.AddInputs}
                             value={name}
                             onChange={(event) => handleName(event)}
                         />
@@ -126,7 +147,7 @@ const AddPersonDialogBox = ({ setOpen, setFetchData }) => {
                     <div style={{paddingTop: '1.5rem'}}>
                         <Input 
                             disableUnderline={true}
-                            className={classes.AddInputs}
+                            className={isErrorAge ? classes.ErrorInputs : classes.AddInputs}
                             value={age}
                             onChange={(event) => handleAge(event)}
                         />

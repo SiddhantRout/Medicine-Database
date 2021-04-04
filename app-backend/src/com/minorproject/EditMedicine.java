@@ -56,22 +56,24 @@ public class EditMedicine extends HttpServlet {
 			}
 			
 			String name = final_values[0];
-			String concentration = final_values[1];
-			int quantity = Integer.parseInt(final_values[2]);
-			String unit = final_values[3];
-			String expiry = final_values[4].substring(0, final_values[4].length() - 2);
-			String purpose = final_values[5];
+//			String concentration = final_values[1];
+			int quantity = Integer.parseInt(final_values[1]);
+//			String unit = final_values[3];
+//			String expiry = final_values[4].substring(0, final_values[4].length() - 2);
+			String purpose = final_values[2];
 		
 			Connection conn = GetConnection.connectToDB();
-			String sql_statement = "UPDATE medicine SET concentration=?, quantity=?, unit=?, expiry=?, purpose=? WHERE name=?";
+			String sql_statement = "UPDATE medicine SET quantity=?, purpose=? WHERE name=?";
 			
 			PreparedStatement st = conn.prepareStatement(sql_statement);
-			st.setString(6, name);
-			st.setString(1,  concentration.isEmpty() ? null : concentration);
-			st.setInt(2,  quantity);
-			st.setString(3,  unit);
-			st.setString(4,  expiry);
-			st.setString(5,  purpose.isEmpty() ? null : purpose);
+			st.setString(3, name);
+//			System.out.println(st);
+//			st.setString(1,  concentration.isEmpty() ? null : concentration);
+			st.setInt(1, quantity);
+//			System.out.println(st);
+//			st.setString(3,  unit);
+//			st.setString(4,  expiry);
+			st.setString(2, purpose.isEmpty() ? null : purpose);
 			
 			System.out.println(st);
 			

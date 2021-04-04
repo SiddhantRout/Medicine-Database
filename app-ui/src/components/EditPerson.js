@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
+const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails, setSelected }) => {
     const classes = useStyles();
     const [ personID, setPersonID ] = React.useState(selectedDetails[0]['person_id'])
     const [ name, setName ] = React.useState(selectedDetails[0]['name']);
@@ -59,7 +59,7 @@ const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
             `http://localhost:8080/Minor_Project/EditPerson`,
             {
                 personID,
-                name,
+                // name,
                 age,
                 medicalHistory,
             }
@@ -68,6 +68,7 @@ const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
             console.log(response)
             setFetchData(true)
             setOpen(false)
+            setSelected([])
         })
         .catch(error => {
             console.log(error)
@@ -112,16 +113,17 @@ const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
                     <div className={classes.AddLabels}>Medical History</div>
                 </div>
                 <div>
-                    <div style={{paddingTop: '1.5rem'}}>
-                        <Input 
+                    <div style={{paddingTop: '2rem'}}>
+                        {/* <Input 
                             disableUnderline={true}
                             className={classes.AddInputs}
                             // value={name}
                             onChange={(event) => handleName(event)}
                             placeholder={selectedDetails[0]['name']}
-                        />
+                        /> */}
+                        {name}
                     </div>
-                    <div style={{paddingTop: '1.5rem'}}>
+                    <div style={{paddingTop: '2rem'}}>
                         <Input 
                             disableUnderline={true}
                             className={classes.AddInputs}
@@ -129,14 +131,15 @@ const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails }) => {
                             onChange={(event) => handleAge(event)}
                             placeholder={selectedDetails[0]['age']}
                         />
+                        {/* {age} */}
                     </div>
-                    <div style={{paddingTop: '1.5rem'}}>
+                    <div style={{paddingTop: '2rem'}}>
                         <Input 
                             disableUnderline={true}
                             style={{ height: '7rem', verticalAlign: 'top' }}
                             className={classes.AddInputs}
                             multiline={true}
-                            // value={medicalHistory}
+                            value={medicalHistory}
                             onChange={(event) => handleMedicalHistory(event)}
                             placeholder={selectedDetails[0]['notes']}
                         />

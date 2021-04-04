@@ -51,34 +51,34 @@ public class EditPerson extends HttpServlet {
 			
 			for(int i = 0; i < final_values.length; ++i) {
 				final_values[i] = final_values[i].split(":")[1];
-				if(i != 2 && i != 0)
+				if(final_values[i].charAt(0) == '\"')
 					final_values[i] = final_values[i].substring(1, final_values[i].length() - 1);
 				System.out.println(final_values[i]);
 			}
 			
 			String person_id = final_values[0];
-			String name = final_values[1];
-			String age = final_values[2];
-			String medicalHistory = final_values[3];
-			
+//			String name = final_values[1];
+			String age = final_values[1];
+			String medicalHistory = final_values[2];
+//			
 			Connection conn = GetConnection.connectToDB();
-			String sql_statement = "UPDATE person SET name=?, age=?, notes=? WHERE person_id=?";
+			String sql_statement = "UPDATE person SET age=?, notes=? WHERE person_id=?";
 			
 			PreparedStatement st = conn.prepareStatement(sql_statement);
-			st.setString(1, name);
-			st.setString(2,  age);
-			st.setString(3,  medicalHistory);
-			st.setString(4,  person_id);
-			
+//			st.setString(1, name);
+			st.setString(1,  age);
+			st.setString(2,  medicalHistory);
+			st.setString(3,  person_id);
+//			
 			st.executeUpdate();
 			conn.close();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -67,11 +67,11 @@ public class AddMedicine extends HttpServlet {
 			
 			PreparedStatement st = conn.prepareStatement(sql_statement);
 			st.setString(1, name);
-			st.setString(2,  concentration);
+			st.setString(2,  concentration.isEmpty() ? null : concentration);
 			st.setInt(3,  quantity);
 			st.setString(4,  unit);
 			st.setString(5,  expiry);
-			st.setString(6,  purpose);
+			st.setString(6,  purpose.isEmpty() ? null : purpose);
 			
 			st.executeUpdate();
 			conn.close();
