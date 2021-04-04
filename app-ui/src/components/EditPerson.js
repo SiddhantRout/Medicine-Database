@@ -48,7 +48,7 @@ const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails, setSelect
     const [ personID, setPersonID ] = React.useState(selectedDetails[0]['person_id'])
     const [ name, setName ] = React.useState(selectedDetails[0]['name']);
     const [ age, setAge ] = React.useState(selectedDetails[0]['age']);
-    const [ medicalHistory, setMedicalHistory ] = React.useState('');
+    const [ medicalHistory, setMedicalHistory ] = React.useState(selectedDetails[0]['notes']);
 
     const handleClose = () => {
         setOpen(false);
@@ -139,7 +139,7 @@ const EditPersonDialogBox = ({ setOpen, setFetchData, selectedDetails, setSelect
                             style={{ height: '7rem', verticalAlign: 'top' }}
                             className={classes.AddInputs}
                             multiline={true}
-                            // value={medicalHistory}
+                            value={medicalHistory}
                             onChange={(event) => handleMedicalHistory(event)}
                             placeholder={selectedDetails[0]['notes']}
                         />
