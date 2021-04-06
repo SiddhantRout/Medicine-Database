@@ -36,6 +36,7 @@ const Header = ({ value, setValue }) => {
                 onChange={handleChange}
             >
                 {/* <Tab label="Dashboard" /> */}
+                <Tab label="Dosage"/>
                 <Tab label="People" />
                 <Tab label="Medicines" />
             </Tabs>

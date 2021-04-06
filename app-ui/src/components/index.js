@@ -1,5 +1,4 @@
 import Header from './Header';
-import LeftPannel from './LeftPannel';
 import PersonTable from './PeopleData';
 import AddPersonDialogBox from './AddPerson';
 import EditPersonDialogBox from './EditPerson';
@@ -8,10 +7,10 @@ import MedicineTable from './MedicineData';
 import AddMedicineDialogBox from './AddMedicine';
 import EditMedicineDialogBox from './EditMedicine';
 import DeleteMedicineDialogBox from './DeleteMedicine';
+import DosageTable from './DosageData';
 
 export {
     Header,
-    LeftPannel,
     PersonTable,
     AddPersonDialogBox,
     EditPersonDialogBox,
@@ -19,5 +18,6 @@ export {
     MedicineTable,
     AddMedicineDialogBox,
     EditMedicineDialogBox,
-    DeleteMedicineDialogBox
+    DeleteMedicineDialogBox,
+    DosageTable,
 }
