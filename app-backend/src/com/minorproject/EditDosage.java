@@ -113,9 +113,9 @@ public class EditDosage extends HttpServlet {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-//		catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
