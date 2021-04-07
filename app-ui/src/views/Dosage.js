@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core';
-import { DosageTable, AddPersonDialogBox, EditPersonDialogBox, DeletePersonDialogBox } from '../components';
+import { DosageTable, AddDosageDialogBox, EditPersonDialogBox, DeletePersonDialogBox } from '../components';
 import { Button, Input } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +40,9 @@ const Bar = ({
     isOpenAddMenu, setIsOpenAddMenu,
     isOpenEditMenu, setIsOpenEditMenu,
     isOpenDeleteMenu, setIsOpenDeleteMenu,
-    selected
+    selected,
+    personList, setPersonList,
+    medicineList, setMedicineList
 }) => {
     const classes = useStyles();
 
@@ -48,6 +50,27 @@ const Bar = ({
         setIsOpenAddMenu(true);
         setIsOpenEditMenu(false);
         setIsOpenDeleteMenu(false);
+
+        axios.get(`http://localhost:8080/Minor_Project/SendPersonList`)
+        .then((response) => {
+            setPersonList((prev) => [...response.data]);
+            // console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+        axios.get(`http://localhost:8080/Minor_Project/SendMedicineList`)
+        .then((response) => {
+            setMedicineList((prev) => [...response.data]);
+            // console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+        console.log(personList)
+        console.log(medicineList)
     }
 
     const handleEdit = () => {
@@ -112,6 +135,9 @@ const Dosage = () => {
     const [ selected, setSelected ] = React.useState([]);
     const [ selectedDetails, setSelectedDetails ] = React.useState([]);
 
+    const [ personList, setPersonList ] = React.useState([])
+    const [ medicineList, setMedicineList ] = React.useState([])
+
     React.useEffect(() => {
         axios.get(`http://localhost:8080/Minor_Project/SendDataFromDosage`)
         .then((response) => {
@@ -139,6 +165,8 @@ const Dosage = () => {
                     isOpenEditMenu={isOpenEditMenu} setIsOpenEditMenu={setIsOpenEditMenu}
                     isOpenDeleteMenu={isOpenDeleteMenu} setIsOpenDeleteMenu={setIsOpenDeleteMenu}
                     selected={selected}
+                    personList={personList} setPersonList={setPersonList}
+                    medicineList={medicineList} setMedicineList={setMedicineList}
                 />
             </div>
             <div>
@@ -150,9 +178,11 @@ const Dosage = () => {
                             setSelected={setSelected}
                         /> :
                         isOpenAddMenu ?
-                            <AddPersonDialogBox 
+                            <AddDosageDialogBox 
                                 setOpen={setIsOpenAddMenu} 
                                 setFetchData={setFetchData}
+                                personList={personList}
+                                medicineList={medicineList}
                             /> :
                             isOpenEditMenu ? 
                                 <EditPersonDialogBox
