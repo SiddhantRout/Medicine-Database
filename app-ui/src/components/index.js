@@ -9,6 +9,7 @@ import EditMedicineDialogBox from './EditMedicine';
 import DeleteMedicineDialogBox from './DeleteMedicine';
 import DosageTable from './DosageData';
 import AddDosageDialogBox from './AddDosage';
+import EditDosageDialogBox from './EditDosage';
 
 export {
     Header,
@@ -22,4 +23,5 @@ export {
     DeleteMedicineDialogBox,
     DosageTable,
     AddDosageDialogBox,
+    EditDosageDialogBox,
 }

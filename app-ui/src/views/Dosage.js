@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core';
-import { DosageTable, AddDosageDialogBox, EditPersonDialogBox, DeletePersonDialogBox } from '../components';
+import { DosageTable, AddDosageDialogBox, EditDosageDialogBox, DeletePersonDialogBox } from '../components';
 import { Button, Input } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -185,7 +185,7 @@ const Dosage = () => {
                                 medicineList={medicineList}
                             /> :
                             isOpenEditMenu ? 
-                                <EditPersonDialogBox
+                                <EditDosageDialogBox
                                     setOpen={setIsOpenEditMenu} 
                                     setFetchData={setFetchData}
                                     setSelected={setSelected}
