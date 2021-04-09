@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
+import { Logo } from '../assets';
 
 const useStyles = makeStyles((theme) => ({
     Header: {
@@ -10,11 +11,15 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     AppName: {
-        padding: '0.70%',
+        // padding: '0.70%',
         fontWeight: '700',
         fontSize: '18px',
         paddingLeft: '1%',
         paddingRight: '1%'
+    },
+    Tabs: {
+        paddingTop: '1.5%',
+        paddingLeft: '1%'
     }
 }))
 
@@ -29,11 +34,13 @@ const Header = ({ value, setValue }) => {
     return (
         <Paper className={classes.Header}>
             <div className={classes.AppName}>
-                Nigoni (Chuha, which means rat)
+                {/* <Logo/> */}
+                <img src={Logo}/>
             </div>
             <Tabs
                 value={value}
                 onChange={handleChange}
+                className={classes.Tabs}
             >
                 {/* <Tab label="Dashboard" /> */}
                 <Tab label="Dosage"/>
