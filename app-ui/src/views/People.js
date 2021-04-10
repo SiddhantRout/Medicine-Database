@@ -88,12 +88,12 @@ const Bar = ({
                 >
                     Delete
                 </Button>
-                <div className={classes.SearchBar}>
+                {/* <div className={classes.SearchBar}>
                     <Input
                         disableUnderline={true}
                         placeholder='Search'
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     )
